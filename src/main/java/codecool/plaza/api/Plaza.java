@@ -1,18 +1,17 @@
 package codecool.plaza.api;
 
-import codecool.plaza.Exceptions.NoSuchShopException;
-import codecool.plaza.Exceptions.PlazaIsClosedException;
-import codecool.plaza.Exceptions.ShopAlreadyExistsException;
+import codecool.plaza.Exceptions.*;
 
 import java.util.List;
 
-public interface Plaza {
+interface Plaza {
 
     List<Shop> getShops()throws PlazaIsClosedException;
     void addShop(Shop shop)throws ShopAlreadyExistsException, PlazaIsClosedException;
     void removeShop(Shop shop) throws NoSuchShopException, PlazaIsClosedException;
+    Shop findShopByName(String name) throws NoSuchShopException, PlazaIsClosedException;
     boolean isOpen();
-    void open();
-    void close();
+    void open() throws PlazaAlreadyOpenException;
+    void close() throws PlazaAlreadyClosedException;
     String toString();
 }

@@ -1,23 +1,24 @@
 package codecool.plaza.api;
 
-import codecool.plaza.Exceptions.NoSuchProductException;
-import codecool.plaza.Exceptions.OutOfStockException;
-import codecool.plaza.Exceptions.ProductAlreadyExistsException;
-import codecool.plaza.Exceptions.ShopIsClosedException;
+import codecool.plaza.Exceptions.*;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public interface Shop {
+
     String getName();
     String getOwner();
     boolean isOpen();
     void open();
     void close();
-    List<Product> findByName(String name) throws ShopIsClosedException, ShopIsClosedException;
+    List<Product> findByName(String name) throws ShopIsClosedException;
     boolean hasProduct(long barcode) throws ShopIsClosedException;
-    void addNewProduct(Product product, int quantity, float price) throws ProductAlreadyExistsException, ShopIsClosedException, ProductAlreadyExistsException;
+    void addNewProduct(Product product, int quantity, float price) throws ProductAlreadyExistsException, ShopIsClosedException;
     void addProduct(long barcode, int quantity) throws NoSuchProductException, ShopIsClosedException;
-    Product buyProduct(long barcode) throws NoSuchProductException, OutOfStockException, ShopIsClosedException, NoSuchProductException, OutOfStockException;
+    Product buyProduct(long barcode) throws NoSuchProductException, ShopIsClosedException, OutOfStockException;
     List<Product> buyProducts(long barcode, int quantity) throws NoSuchProductException, OutOfStockException, ShopIsClosedException;
+    float getPrice(long barcode) throws NoSuchProductException, ShopIsClosedException;
+    int getQuantity(long barcode) throws NoSuchProductException, ShopIsClosedException;
     String toString();
 }

@@ -1,12 +1,15 @@
 package codecool.plaza.api;
 
-public class ClothingProduct extends Product {
-    String material;
-    String type;
-    public ClothingProduct(long barcode, String manufacturer,String material,String type) {
-        super(barcode, manufacturer);
+import java.io.*;
+
+public class ClothingProduct extends Product implements Serializable{
+
+    private  String material;
+    private  String type;
+    public ClothingProduct(long barcode, String name, String manufacturer, String material, String type){
+        super(barcode, name, manufacturer);
         this.material = material;
-        this.type=type;
+        this.type = type;
     }
 
     public String getMaterial() {
@@ -16,7 +19,9 @@ public class ClothingProduct extends Product {
     public String getType() {
         return type;
     }
-    public String toString(){
-        return "";
+
+    public String toString() {
+        return "Product information: "+"\nproduct name: "+name+" | barcode: "+barcode+" | manufacturer: "+manufacturer+" | product material: "+material+" | type: "+type;
     }
+
 }
