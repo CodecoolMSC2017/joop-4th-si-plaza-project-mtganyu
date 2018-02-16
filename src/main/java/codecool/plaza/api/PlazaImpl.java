@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class PlazaImpl implements Plaza,Serializable  {
+public class PlazaImpl implements Plaza, Serializable {
 
     private List<Shop> shops;
     private final String name;
     private final String owner;
     private boolean open;
 
-    public PlazaImpl(String name, String owner){
+    public PlazaImpl(String name, String owner) {
         shops = new ArrayList<Shop>();
         this.name = name;
         this.owner = owner;
@@ -30,7 +30,7 @@ public class PlazaImpl implements Plaza,Serializable  {
 
     @Override
     public List<Shop> getShops() throws PlazaIsClosedException {
-        if(isOpen()) {
+        if (isOpen()) {
             return shops;
         }
         throw new PlazaIsClosedException();
@@ -52,7 +52,7 @@ public class PlazaImpl implements Plaza,Serializable  {
 
     @Override
     public void removeShop(Shop shop) throws NoSuchShopException, PlazaIsClosedException {
-        if(isOpen()){
+        if (isOpen()) {
             for (Shop s : shops) {
                 if (shop.getName().equals(s.getName()) && shop.getOwner().equals(s.getOwner())) {
                     shops.remove(s);
@@ -66,9 +66,9 @@ public class PlazaImpl implements Plaza,Serializable  {
 
     @Override
     public Shop findShopByName(String name) throws NoSuchShopException, PlazaIsClosedException {
-        if(isOpen()){
-            for(Shop shop : shops){
-                if((shop.getName()).equals(name)){
+        if (isOpen()) {
+            for (Shop shop : shops) {
+                if ((shop.getName()).equals(name)) {
                     return shop;
                 }
             }
@@ -92,7 +92,7 @@ public class PlazaImpl implements Plaza,Serializable  {
         open = false;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

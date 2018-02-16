@@ -113,12 +113,12 @@ public class ShopImpl implements Shop, Serializable {
 
     @Override
     public Product buyProduct(long barcode) throws NoSuchProductException, ShopIsClosedException, OutOfStockException {
-       return null;
+        return null;
     }
 
     @Override
     public List<Product> buyProducts(long barcode, int quantity) throws NoSuchProductException, OutOfStockException, ShopIsClosedException {
-       return null;
+        return null;
     }
 
     public float getPrice(long barcode) throws NoSuchProductException, ShopIsClosedException {

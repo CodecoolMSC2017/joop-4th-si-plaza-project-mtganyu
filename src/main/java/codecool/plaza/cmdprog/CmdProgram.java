@@ -1,5 +1,6 @@
 package codecool.plaza.cmdprog;
-import  codecool.plaza.api.*;
+
+import codecool.plaza.api.*;
 import codecool.plaza.Exceptions.*;
 
 import java.text.SimpleDateFormat;
@@ -7,9 +8,8 @@ import java.util.*;
 
 class CmdProgram {
 
-    private  List<Product> cart = new ArrayList<>();
-    private  Scanner scan = new Scanner(System.in);
-    // --Commented out by Inspection (2018. 02. 15. 23:09):private String[] mainMenu = new String[]{"Create plaza","Load plaza","Exit menu"};
+    private List<Product> cart = new ArrayList<>();
+    private Scanner scan = new Scanner(System.in);
     private final String[] plazaMenu = new String[]{"List all shops",
             "Add a new shop",
             "Remove existing shop",
@@ -33,8 +33,9 @@ class CmdProgram {
             "Save shop"};
     private String plazaName;
     private ShopImpl shop;
-    private  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Product product;
+
     public void Program(String[] args) {
 
     }
@@ -60,7 +61,6 @@ class CmdProgram {
                         running = false;
                         break;
                     case 2:
-                        //product.deserializeProd();
                         plaza = PlazaImpl.deserializePlaza();
                         shop = ShopImpl.deserializeShop();
                         handlePlazaMenu(plaza);
@@ -139,19 +139,21 @@ class CmdProgram {
                             System.out.println(plazaIsClosed.getMessage());
                         }
                         break;
-                    case 5:try {
-                        plaza.open();
-                        System.out.println("plaza opened!");
-                    }catch (Exception e){
-                        e.getMessage();
-                    }
+                    case 5:
+                        try {
+                            plaza.open();
+                            System.out.println("plaza opened!");
+                        } catch (Exception e) {
+                            e.getMessage();
+                        }
                         break;
-                    case 6:try {
-                        plaza.close();
-                        System.out.println("plaza closed!");
-                    }catch (Exception e){
-                        e.getMessage();
-                    }
+                    case 6:
+                        try {
+                            plaza.close();
+                            System.out.println("plaza closed!");
+                        } catch (Exception e) {
+                            e.getMessage();
+                        }
                         break;
                     case 7:
                         System.out.print("The plaza is currently ");
@@ -234,7 +236,7 @@ class CmdProgram {
                                     Date tempDate = new Date();
                                     tempDate = sdf.parse(attributes[4]);
                                     product = new FoodProduct(tempBar, tempName, tempManufacturer, tempCalorie, tempDate);
-                                  //  product.serializeProd();
+                                    //  product.serializeProd();
                                     creating = false;
                                 } catch (NumberFormatException nf) {
                                     System.out.println(nf.getMessage());
@@ -252,13 +254,12 @@ class CmdProgram {
                                 try {
                                     long tempBar = Long.parseLong(attributes[2]);
                                     product = new ClothingProduct(tempBar, tempName, tempManufacturer, tempMaterial, tempType);
-                                  //  product.serializeProd();
+                                    //  product.serializeProd();
                                     creating = false;
                                 } catch (NumberFormatException nf) {
                                     System.out.println(nf.getMessage());
                                 }
-                            }
-                            else{
+                            } else {
                                 System.out.println("Please enter a valid option!");
                             }
                         }
@@ -300,10 +301,10 @@ class CmdProgram {
                         System.out.println(shop.toString());
                         System.out.println("Please enter a barcode: ");
                         String tempBc3 = scan.nextLine();
-                        try{
+                        try {
                             long barCodeForPrice = Long.parseLong(tempBc3);
                             System.out.println(shop.getPrice(barCodeForPrice));
-                        }catch (NumberFormatException nf){
+                        } catch (NumberFormatException nf) {
                             System.out.println(nf.getMessage());
                         }
                         break;
@@ -312,11 +313,11 @@ class CmdProgram {
                         System.out.println(shop.toString());
                         System.out.println("Please enter a barcode: ");
                         String tempBc4 = scan.nextLine();
-                        try{
+                        try {
                             long barCodeForPrice = Long.parseLong(tempBc4);
                             System.out.println("The quantity of this item in stock is: ");
                             System.out.println(shop.getQuantity(barCodeForPrice));
-                        }catch (NumberFormatException nf){
+                        } catch (NumberFormatException nf) {
                             System.out.println(nf.getMessage());
                         }
                         break;
